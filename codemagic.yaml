@@ -18,7 +18,6 @@ workflows:
           script: |
             echo $FCI_KEYSTORE | base64 --decode > $FCI_KEYSTORE_PATH
             cd android && ./gradlew assembleRelease
-      - |
         # set up local properties
         echo "flutter.sdk=$HOME/programs/flutter" > "$FCI_BUILD_DIR/android/local.properties"
       - flutter packages pub get
