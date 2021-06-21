@@ -1,7 +1,6 @@
 workflows:
   default-workflow:
     name: Default Workflow
-    instance_type: linux_x2
     max_build_duration: 60
     environment:
       vars:
@@ -15,13 +14,13 @@ workflows:
       cocoapods: default
     scripts:
       - name: Build Android
-    script: |
-        echo $FCI_KEYSTORE | base64 --decode > $FCI_KEYSTORE_PATH
-        cd android && ./gradlew assembleRelease 
-        # set up local properties
+          script: |
+              echo $FCI_KEYSTORE | base64 --decode > $FCI_KEYSTORE_PATH
+              cd android && ./gradlew assembleRelease 
+          # set up local properties
         echo "flutter.sdk=$HOME/programs/flutter" > "$FCI_BUILD_DIR/android/local.properties"
       - flutter packages pub get
-      - flutter build apk --debug
+      - flutter build apk --release
     artifacts:
       - build/**/outputs/**/*.apk
       - build/**/outputs/**/*.aab
