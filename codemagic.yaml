@@ -9,43 +9,30 @@
           FCI_KEYSTORE_PASSWORD: Encrypted(Z0FBQUFBQmcwSGgzUTlYWUsteGVibE1Yb3JoZEhzSlBBbmttNHRzRm42NzZPMFJ2RVhoSWpMOW5ncFhfb1ppMUhyTUVxcFhyQjlKN0lhYXBtOGxsQ1lnU09seTJrUjFhbkE9PQ==)
           FCI_KEY_ALIAS: Encrypted(Z0FBQUFBQmcwSGlncVNuWlJJTDlUal9pc2FNeXF1S3pzaGtHLXBvX3E5WWh6cVB3c3piTmtvTWFTNEhNaDNILTRWWnZwXzI1VmJtajF5MGlkbGhTd0V1RDVLMmhhLW9LNlE9PQ==)
           FCI_KEY_PASSWORD: Encrypted(Z0FBQUFBQmcwSGgzUTlYWUsteGVibE1Yb3JoZEhzSlBBbmttNHRzRm42NzZPMFJ2RVhoSWpMOW5ncFhfb1ppMUhyTUVxcFhyQjlKN0lhYXBtOGxsQ1lnU09seTJrUjFhbkE9PQ==)     
-        flutter: stable
-        xcode: latest
-        cocoapods: default
-      scripts:
-        - name: Set up debug key.properties
-          script: |
-            keytool -genkeypair \
-              -alias androidreleasekey \
-              -keypass android \
-              -keystore ~/.android/release.keystore \
-              -storepass android \
-              -dname 'CN=Android Release,O=Android,C=US' \
-              -keyalg 'RSA' \
-              -keysize 2048 \
-              -validity 10000   
-        - name: Set up key.properties
-          script: |
-              echo $FCI_KEYSTORE | base64 --decode > $FCI_KEYSTORE_PATH
-              cat >> "$FCI_BUILD_DIR/project_directory/android/key.properties" <<EOF
-              storePassword=$FCI_KEYSTORE_PASSWORD
-              keyPassword=$FCI_KEY_PASSWORD
-              keyAlias=$FCI_KEY_ALIAS
-              storeFile=$FCI_KEYSTORE_PATH
-              EOF    
-        - name: Get Flutter packages
-          script: |
-            cd . && flutter packages pub get      
-        - name: Build APK with Flutter  
-          script: |
-            cd . && flutter build apk --release 
-      artifacts:
-        - build/**/outputs/**/*.apk
-        - build/**/outputs/**/*.aab
-        - build/**/outputs/**/mapping.txt
-        - flutter_drive.log
-      publishing:
-        # See the following link for details about email publishing - https://docs.codemagic.io/publishing-yaml/distribution/#email
-        email:
-          recipients:
-            - nihal@nevercode.io
+       flutter: stable
+      xcode: latest
+      cocoapods: default
+    scripts:
+      - |
+        # set up key.properties
+        echo $FCI_KEYSTORE | base64 --decode > $FCI_KEYSTORE_PATH
+        cat >> "$FCI_BUILD_DIR/android/key.properties" <<EOF
+        storePassword=$FCI_KEYSTORE_PASSWORD
+        keyPassword=$FCI_KEY_PASSWORD
+        keyAlias=$FCI_KEY_ALIAS
+        storeFile=/tmp/keystore.keystore
+        EOF
+      - |
+        # set up local properties
+        echo "flutter.sdk=$HOME/programs/flutter" > "$FCI_BUILD_DIR/android/local.properties"
+      - flutter packages pub get
+      - flutter build apk --release
+    artifacts:
+      - build/**/outputs/**/*.apk
+      - build/**/outputs/**/*.aab
+      - build/**/outputs/**/mapping.txt
+      - flutter_drive.log
+    publishing:
+      email:
+        recipients:
+          - nihal@nevercode.io
