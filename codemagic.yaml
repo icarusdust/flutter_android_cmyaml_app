@@ -13,6 +13,10 @@ workflows:
       xcode: latest
       cocoapods: default
     scripts:         
+      - name: Build Android
+        script: |
+          echo $FCI_KEYSTORE | base64 --decode > $FCI_KEYSTORE_PATH
+          cd android && ./gradlew assembleRelease 
           # set up local properties
       - flutter packages pub get
       - flutter build apk --release
