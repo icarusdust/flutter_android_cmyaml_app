@@ -16,11 +16,11 @@
         - name: Set up debug key.properties
           script: |
             keytool -genkeypair \
-              -alias androiddebugkey \
+              -alias androidreleasekey \
               -keypass android \
-              -keystore ~/.android/debug.keystore \
+              -keystore ~/.android/release.keystore \
               -storepass android \
-              -dname 'CN=Android Debug,O=Android,C=US' \
+              -dname 'CN=Android Release,O=Android,C=US' \
               -keyalg 'RSA' \
               -keysize 2048 \
               -validity 10000   
@@ -33,18 +33,12 @@
               keyAlias=$FCI_KEY_ALIAS
               storeFile=$FCI_KEYSTORE_PATH
               EOF    
-        - name: Set up local.properties
-          script: |
-            echo "flutter.sdk=$HOME/programs/flutter" > "$FCI_BUILD_DIR/android/local.properties"
         - name: Get Flutter packages
           script: |
-            cd . && flutter packages pub get
-        - name: Flutter analyze
-          script: |
-            cd . && flutter analyze         
+            cd . && flutter packages pub get      
         - name: Build APK with Flutter  
           script: |
-            cd . && flutter build apk --release --build-name=1.0.0 --build-number=$(($(google-play get-latest-build-number --package-name "$PACKAGE_NAME" --tracks="$GOOGLE_PLAY_TRACK") + 1))
+            cd . && flutter build apk --release 
       artifacts:
         - build/**/outputs/**/*.apk
         - build/**/outputs/**/*.aab
