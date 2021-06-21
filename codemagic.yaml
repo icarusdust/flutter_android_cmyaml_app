@@ -1,8 +1,7 @@
  workflows:
     android-workflow:
     name: Android Workflow
-    instance_type: linux_x2
-    max_build_duration: 120
+    max_build_duration: 60
     environment:
       vars:
         FCI_KEYSTORE_PATH: /Users/nihalagazade/Desktop/keys/keystore_sec.jks
@@ -39,5 +38,4 @@
       # See the following link for details about email publishing - https://docs.codemagic.io/publishing-yaml/distribution/#email
       email:
         recipients:
-          - user_1@example.com
-          - user_2@example.com
+          - nihal@nevercode.io
