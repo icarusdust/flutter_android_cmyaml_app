@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.flutter_android_cmyaml_app">
+    package="com.flutter_android_cmyaml_appa.app">
    <application
         android:label="flutter_android_cmyaml_app"
         android:icon="@mipmap/ic_launcher">
