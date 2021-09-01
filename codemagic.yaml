@@ -8,7 +8,7 @@ workflows:
                 XCODE_WORKSPACE: "ios/Runner.xcworkspace" # <-- Put the name of your Xcode workspace here
                 XCODE_SCHEME: "Runner" # <-- Put the name of your Xcode scheme here
             node: latest
-            xcode: 12.5
+            xcode: latest
             cocoapods: default
         scripts:
             - name: Build app for distribution
