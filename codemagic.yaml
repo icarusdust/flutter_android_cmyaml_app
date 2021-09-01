@@ -5,8 +5,8 @@ workflows:
         instance_type: mac_pro
         environment:
             vars:
-                XCODE_WORKSPACE: "reactnativecm.xcworkspace" # <-- Put the name of your Xcode workspace here
-                XCODE_SCHEME: "reactnativecm" # <-- Put the name of your Xcode scheme here
+                XCODE_WORKSPACE: "Runner.xcworkspace" # <-- Put the name of your Xcode workspace here
+                XCODE_SCHEME: "Runner" # <-- Put the name of your Xcode scheme here
             node: latest
             xcode: 12.5
             cocoapods: default
