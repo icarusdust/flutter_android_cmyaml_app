@@ -88,8 +88,11 @@ workflows:
       email:
         recipients:
           - nihal@nevercode.io
-    #   google_play: 
-    #     credentials: $GCLOUD_SERVICE_ACCOUNT_CREDENTIALS
-    #     track: $GOOGLE_PLAY_TRACK
+      firebase:
+        firebase_token:
+        android:
+           app_id:
+           groups:
+             - 
 
  
