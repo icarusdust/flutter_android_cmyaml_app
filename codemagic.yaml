@@ -89,10 +89,10 @@ workflows:
         recipients:
           - nihal@nevercode.io
       firebase:
-        firebase_token:
+        firebase_token: Encrypted(Z0FBQUFBQmhNU1p2QUxReE9LeFM2UlIyZG9hMjFvaTVWR1JLREhNaS1vdWtIa2NTVE82M0xMT0lfLWJpczg4R2cxbXVPM2V0QlBWZjRNY0p4WldQSjlGaURZbndDY0dIVERtSWtXTWZyYVBBOTUzaXg5RUk4OUZSa2V0WmpBMGlvOW1ZcFFFMmYzYl9mOUZ6MnptazRrckRfY0tGYjNINDJwX0dYUUNBd2VXMVRWLURXTWRuODRoalkwSEZabGFrRVAwVGg0MDdXR0dzY0RBaC1ScHdzTEZHZTFEb016TnA0QT09)
         android:
-           app_id:
+           app_id: 1:435144668371:android:c48a8d886328701e4c1026
            groups:
-             - 
+             - mars
 
  
