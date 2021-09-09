@@ -77,9 +77,9 @@ workflows:
         # set up local properties
         echo "flutter.sdk=$HOME/programs/flutter" > "$FCI_BUILD_DIR/android/local.properties"
       - flutter packages pub get
-      - flutter build appbundle --release --build-name=2.0.$BUILD_NUMBER --build-number=$(($BUILD_NUMBER+ 1))
+      - flutter build apk --release --build-name=2.0.$BUILD_NUMBER --build-number=$(($BUILD_NUMBER+ 1))
     artifacts:
-#       - build/**/outputs/**/*.apk
+      - build/**/outputs/**/*.apk
 #       - build/**/outputs/apk/**/*.apk     
       - build/**/outputs/**/*.aab
       - build/**/outputs/**/mapping.txt
