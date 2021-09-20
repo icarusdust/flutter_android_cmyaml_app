@@ -83,7 +83,7 @@ workflows:
       - echo 'previous step'         
       - name: 'Flutter integration test for web'
         script: |
-            chromedriver --port=4444 &
+            chromedriver --port=4444
             flutter config --enable-web
             flutter drive --driver=test_driver/integration_driver.dart --target=integration_test/app_test.dart -d web-server --release --browser-name chrome      
     artifacts:
