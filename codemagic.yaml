@@ -80,6 +80,12 @@ workflows:
         echo "flutter.sdk=$HOME/programs/flutter" > "$FCI_BUILD_DIR/android/local.properties"
       - flutter packages pub get
       - flutter build appbundle --release --build-name=2.0.$BUILD_NUMBER --build-number=$(($BUILD_NUMBER+ 1))
+      - echo 'previous step'         
+      - name: 'Flutter integration test for web'
+        script: |
+            chromedriver --port=4444 &
+            flutter config --enable-web
+            flutter drive --driver=test_driver/integration_driver.dart --target=integration_test/app_test.dart -d web-server --release --browser-name chrome      
     artifacts:
 #       - build/**/outputs/**/*.apk
 #       - build/**/outputs/apk/**/*.apk     
