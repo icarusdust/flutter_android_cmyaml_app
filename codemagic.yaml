@@ -69,7 +69,7 @@ workflows:
     scripts:         
       - |
           # set up key.properties
-          echo $BUILD_NUMBER
+
           echo $FCI_KEYSTORE | base64 --decode > $FCI_KEYSTORE_PATH
           cat >> "$FCI_BUILD_DIR/android/key.properties" <<EOF
           storePassword=$FCI_KEYSTORE_PASSWORD
