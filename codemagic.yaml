@@ -66,7 +66,7 @@ workflows:
         - pattern: '*'
           include: true
           source: true
-     scripts:         
+    scripts:         
       - |
           # set up key.properties
           echo $FCI_KEYSTORE | base64 --decode > $FCI_KEYSTORE_PATH
