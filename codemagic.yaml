@@ -83,8 +83,8 @@ workflows:
       - flutter build apk --release --build-name=2.0.$BUILD_NUMBER --build-number=$(($BUILD_NUMBER+ 1))
       - name: App upload and Set app id in environment variable.
         script: |
-          curl -u "nihalagazade_JxPH1i:4y5LkQnzzGkv2s7ERZ4q" -X POST "https://api-cloud.browserstack.com/app-automate/upload" \ -F "file=@build/app/outputs/apk/release/app-release.apk"
-
+          APP_URL=$(curl -u "nihalagazade_JxPH1i:4y5LkQnzzGkv2s7ERZ4q" -X POST "https://api-cloud.browserstack.com/app-automate/upload" -F "file=@app/build/outputs/apk/release/app-release.apk" | jq -r '.app_url') 
+          echo $APP_URL
 #       - echo 'previous step'         
 #       - name: 'Flutter integration test for web'
 #         script: |
