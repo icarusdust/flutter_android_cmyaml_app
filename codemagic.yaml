@@ -5,7 +5,7 @@ workflows:
     max_build_duration: 120
     environment:
       groups:
-        - test_ios
+        - ghost
       vars:
         XCODE_WORKSPACE: "Runner.xcworkspace"
         XCODE_SCHEME: "Runner"                
