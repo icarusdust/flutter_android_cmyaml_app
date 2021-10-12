@@ -54,7 +54,7 @@ workflows:
       - flutter_drive.log
 
 # workflows:
-  default-workflow:
+ default-workflow:
     name: Default Workflow
     instance_type: linux_x2
     max_build_duration: 60
